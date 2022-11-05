@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using AutoMapper;
-using ComercioBom5.Context;
-using ComercioBom5.DTO;
-using ComercioBom5.Models;
+using ComercioBom.Context;
+using ComercioBom.DTO;
+using ComercioBom.Models;
 
-namespace ComercioBom5.Services
+namespace ComercioBom.Services
 {
     public class ItensService
     {
@@ -16,16 +16,23 @@ namespace ComercioBom5.Services
             _mapper = mapper;
         }
 
-        public List<Item> AdicionarItens(int vendaId, List<ItemDTO> itens)
+        public List<Item> AdicionarItens(List<ItemDTO> itens)
         {
             var listaItens = _mapper.Map<List<Item>>(itens);
             foreach(var item in listaItens)
             {
-                item.VendaId = vendaId;
+                item.Valor = CalcularValorDoItem(item);
+                _context.Itens.Add(item);
             }
-            _context.Itens.AddRange(listaItens);
             _context.SaveChanges();
             return listaItens;
+        }
+
+        public decimal CalcularValorDoItem(Item item)
+        {
+            Produto produto = _context.Produtos.Find(item.ProdutoId);
+            var valorDoItem = produto.Valor * item.Quantidade;
+            return valorDoItem;
         }
     }
 }

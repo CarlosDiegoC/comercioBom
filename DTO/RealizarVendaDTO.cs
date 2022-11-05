@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ComercioBom5.Models;
+using ComercioBom.Models;
 
-namespace ComercioBom5.DTO
+namespace ComercioBom.DTO
 {
     public class RealizarVendaDTO
     {

@@ -1,10 +1,10 @@
-namespace ComercioBom5.Models
+namespace ComercioBom.Models
 {
-    public class Produto
+    public sealed class Produto
     {
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public decimal Valor { get; set; }
+        public int Id { get; private set; }
+        public string Nome { get; private set; }
+        public decimal Valor { get; private set; }
         
         public Produto()
         {

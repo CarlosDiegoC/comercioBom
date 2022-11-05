@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ComercioBom5._0": {
+    "ComercioBom": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

@@ -1,12 +1,12 @@
-using ComercioBom5.DTO;
-using ComercioBom5.Context;
-using ComercioBom5.Models;
+using ComercioBom.DTO;
+using ComercioBom.Context;
+using ComercioBom.Models;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace ComercioBom5.Services
+namespace ComercioBom.Services
 {
     public class VendasService
     {
@@ -22,13 +22,11 @@ namespace ComercioBom5.Services
         public Venda RealizarVenda(RealizarVendaDTO realizarVendaDTO)
         {
             var venda = _mapper.Map<Venda>(realizarVendaDTO);
+            venda.Itens = _itensService.AdicionarItens(realizarVendaDTO.itens);
+            venda.CalcularValorTotal();
             _context.Vendas.Add(venda);
             _context.SaveChanges();
-            var vendaRealizada = BuscarVendaPorId(venda.Id);
-            vendaRealizada.Itens = _itensService.AdicionarItens(vendaRealizada.Id, realizarVendaDTO.itens);
-            vendaRealizada.CalcularValorTotal();
-            _context.SaveChanges();
-            return vendaRealizada;
+            return venda;
         }
 
         public List<Venda> ListarVendas()
@@ -38,7 +36,7 @@ namespace ComercioBom5.Services
 
         public Venda BuscarVendaPorId(int id)
         {
-            return _context.Vendas.FirstOrDefault(venda => venda.Id == id);
+            return _context.Vendas.Include(venda => venda.Vendedor).Include(venda => venda.Itens).FirstOrDefault(venda => venda.Id == id);
         }
     }
 }

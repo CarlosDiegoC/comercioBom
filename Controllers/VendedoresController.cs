@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using ComercioBom5.Context;
-using ComercioBom5.Models;
+using ComercioBom.Context;
+using ComercioBom.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ComercioBom5.Controllers
+namespace ComercioBom.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

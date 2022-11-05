@@ -3,14 +3,16 @@ using System;
 using ComercioBom.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ComercioBom.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221105132241_createSchema")]
+    partial class createSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +38,6 @@ namespace ComercioBom.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProdutoId");
 
                     b.HasIndex("VendaId");
 
@@ -96,17 +96,9 @@ namespace ComercioBom.Migrations
 
             modelBuilder.Entity("ComercioBom.Models.Item", b =>
                 {
-                    b.HasOne("ComercioBom.Models.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ComercioBom.Models.Venda", null)
                         .WithMany("Itens")
                         .HasForeignKey("VendaId");
-
-                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("ComercioBom.Models.Venda", b =>

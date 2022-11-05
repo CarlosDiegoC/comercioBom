@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 
-namespace ComercioBom5.Models
+namespace ComercioBom.Models
 {
-    public class Venda
+    public sealed class Venda
     {
-        public int Id { get; set; }
-        public int VendedorId { get; set; }
-        public decimal ValorTotal { get; set; }
+        public int Id { get; private set; }
+        public int VendedorId { get; private set; }
         public Vendedor Vendedor { get; set; }
+        public decimal ValorTotal { get; private set; }
         public ICollection<Item> Itens { get; set; } = new List<Item>();
 
         public Venda()
@@ -28,14 +28,12 @@ namespace ComercioBom5.Models
             }
         }
 
-        public decimal CalcularValorTotal()
+        public void CalcularValorTotal()
         {
-            decimal valorTotal = 0;
             foreach(var item in Itens)
             {
-                valorTotal += item.Valor;
+                ValorTotal += item.Valor;
             }
-            return valorTotal;
         }
 
     }

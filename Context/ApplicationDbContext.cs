@@ -1,7 +1,7 @@
-using ComercioBom5.Models;
+using ComercioBom.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ComercioBom5.Context
+namespace ComercioBom.Context
 {
     public class ApplicationDbContext : DbContext
     {        

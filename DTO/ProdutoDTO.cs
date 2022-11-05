@@ -1,4 +1,4 @@
-namespace ComercioBom5.DTO
+namespace ComercioBom.DTO
 {
     public class ProdutoDTO
     {

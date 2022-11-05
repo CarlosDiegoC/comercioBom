@@ -1,8 +1,8 @@
 using AutoMapper;
-using ComercioBom5.DTO;
-using ComercioBom5.Models;
+using ComercioBom.DTO;
+using ComercioBom.Models;
 
-namespace ComercioBom5.Mapping
+namespace ComercioBom.Mapping
 {
     public class DomainToDTOMappingProfile : Profile
     {
