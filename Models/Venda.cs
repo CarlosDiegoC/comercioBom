@@ -7,8 +7,8 @@ namespace ComercioBom.Models
         public int Id { get; private set; }
         public int VendedorId { get; private set; }
         public Vendedor Vendedor { get; set; }
-        public decimal ValorTotal { get; private set; }
         public ICollection<Item> Itens { get; set; } = new List<Item>();
+        public decimal ValorTotal { get; private set; }
 
         public Venda()
         {
@@ -30,6 +30,7 @@ namespace ComercioBom.Models
 
         public void CalcularValorTotal()
         {
+            ValorTotal = 0;
             foreach(var item in Itens)
             {
                 ValorTotal += item.Valor;

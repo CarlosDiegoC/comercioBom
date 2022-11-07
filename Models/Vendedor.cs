@@ -2,8 +2,8 @@ namespace ComercioBom.Models
 {
      public sealed class Vendedor
     {
-        public int Id { get; private set; }
-        public string Nome { get; private set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
         
         public Vendedor()
         {
